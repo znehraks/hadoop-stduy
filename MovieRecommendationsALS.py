@@ -21,6 +21,8 @@ def parseInput(line):
 if __name__ == "__main__":
     # Create a SparkSession (the config bit is only for Windows!)
     spark = SparkSession.builder.appName("MovieRecs").getOrCreate()
+    spark.conf.set("spark.sql.crossJoin.enabled", "true")
+    spark.conf.set("spark.sql.leftJoin.enabled", "true")
 
     # Load up our movie ID -> name dictionary
     movieNames = loadMovieNames()
